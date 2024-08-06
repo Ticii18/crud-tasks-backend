@@ -56,7 +56,26 @@ const postTasks = async (req, res) => {
 };
 
 const deleteTasksbyID = async (req, res) => {
-
+    const id = req.params.id;
+    if (typeof id !== 'string' || id.trim() === '') {
+        return res.status(400).json({ error: 'El id no puede estar vacío' });
+    }
+    try {
+        const conex = await db();
+        
+        const [tarea] = await conex.query('SELECT * FROM `tasks` WHERE `id` = ?', [id]);
+        if (tarea.length === 0) {
+            return res.status(404).json({ error: 'La tarea no existe' });
+        }
+        
+        await conex.query('DELETE FROM `tasks` WHERE `id` = ?', [id]);
+    
+        res.status(200).json({ message: 'La tarea se eliminó correctamente', tareaEliminada: tarea[0] });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: 'Hubo un error a la hora de eliminar la tarea' });
+    }
+    
 }
 
 const putTasks = (req, res) => {
