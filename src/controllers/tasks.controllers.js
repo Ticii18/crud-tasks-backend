@@ -88,4 +88,4 @@ const putTasks = async (req, res) => {
     }
 };
 
-module.exports = { index, getTasks, getTasksById, postTasks, deleteTasksbyID, putTasks };
+module.exports = { getTasks, getTasksById, postTasks, deleteTasksbyID, putTasks };
