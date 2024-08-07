@@ -1,17 +1,18 @@
 const routes = require("express").Router()
-const {index, getTasks,getTasksById,postTasks,deleteTasksbyID,putTasks } = require("../controllers/tasks.controllers")
+const {getTasks,getTasksById,postTasks,deleteTasksbyID,putTasks } = require("../controllers/tasks.controllers")
+const {validateCreate, validateUpdate, validateDelete}= require("../validators/task.validation")
 
 
-routes.get('/', index)
+
 
 routes.get('/tasks/',getTasks )
 
 routes.get('/tasks/:id',getTasksById)
 
-routes.post('/tasks/',postTasks );
+routes.post('/tasks/',validateCreate ,postTasks );
 
-routes.put('/tasks/:id' ,putTasks )
+routes.put('/tasks/:id' ,validateUpdate,putTasks )
 
-routes.delete('/tasks/:id',deleteTasksbyID )
+routes.delete('/tasks/:id',validateDelete,deleteTasksbyID )
 
 module.exports = routes
