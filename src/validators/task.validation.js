@@ -14,8 +14,6 @@ const validateCreate = [
         .isLength({ min: 5, max: 255 }),
     check('isComplete')
         .exists()
-        .isEmpty()
-        .not()
         .isBoolean(),
     (req, res, next) => {
         validateResult(req, res, next);
@@ -35,7 +33,7 @@ const validateUpdate = [
         .isLength({ min: 5, max: 255 }),
     check('isComplete')
         .optional()
-        .isBoolean(),
+        .isBoolean(), 
     (req, res, next) => {
         validateResult(req, res, next);
     }
