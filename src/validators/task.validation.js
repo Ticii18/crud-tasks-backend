@@ -5,11 +5,13 @@ const validateCreate = [
     check('title')
         .exists()
         .not()
-        .isEmpty(),
+        .isEmpty()
+        .isLength({ min: 5, max: 255 }),
     check('description')
         .exists()
         .not()
-        .isEmpty(),
+        .isEmpty()
+        .isLength({ min: 5, max: 255 }),
     check('isComplete')
         .exists()
         .isEmpty()
@@ -24,11 +26,13 @@ const validateUpdate = [
     check('title')
         .optional()
         .not()
-        .isEmpty(),
+        .isEmpty()
+        .isLength({ min: 5, max: 255 }),
     check('description')
         .optional()
         .not()
-        .isEmpty(),
+        .isEmpty()
+        .isLength({ min: 5, max: 255 }),
     check('isComplete')
         .optional()
         .isBoolean(),
@@ -49,7 +53,5 @@ const validateDelete = [
         validateResult(req, res, next);
     }
 ];
-
-
 
 module.exports = { validateCreate, validateUpdate, validateDelete };
