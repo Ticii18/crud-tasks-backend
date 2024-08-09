@@ -1,4 +1,4 @@
-const db = require('../db/db');
+import {db} from '../db/db.js';
 
 const getTasks = async (req, res) => {
     try {
@@ -94,4 +94,4 @@ const putTasks = async (req, res) => {
     }
 };
 
-module.exports = { getTasks, getTasksById, postTasks, deleteTasksbyID, putTasks };
+export { getTasks, getTasksById, postTasks, deleteTasksbyID, putTasks };

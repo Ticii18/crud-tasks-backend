@@ -1,18 +1,20 @@
-const routes = require("express").Router()
-const {getTasks,getTasksById,postTasks,deleteTasksbyID,putTasks } = require("../controllers/tasks.controllers")
-const {validateCreate, validateUpdate, validateDelete}= require("../validators/task.validation")
+import { Router } from "express"
+import { getTasks, getTasksById, postTasks, deleteTasksbyID, putTasks } from "../controllers/tasks.controllers.js"
+import { validateCreate, validateUpdate, validateDelete } from "../validators/task.validation.js"
+
+const router = Router()
 
 
 
 
-routes.get('/tasks/',getTasks )
+router.get('/tasks/',getTasks )
 
-routes.get('/tasks/:id',getTasksById)
+router.get('/tasks/:id',getTasksById)
 
-routes.post('/tasks/',validateCreate ,postTasks );
+router.post('/tasks/',validateCreate ,postTasks );
 
-routes.put('/tasks/:id' ,validateUpdate,putTasks )
+router.put('/tasks/:id' ,validateUpdate,putTasks )
 
-routes.delete('/tasks/:id',validateDelete,deleteTasksbyID )
+router.delete('/tasks/:id',validateDelete,deleteTasksbyID )
 
-module.exports = routes
+export {router}

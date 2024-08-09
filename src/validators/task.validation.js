@@ -1,5 +1,7 @@
-const { check, param } = require("express-validator");
-const { validateResult } = require("../helpers/validate.helpers");
+import { check, param } from "express-validator";
+
+import { validateResult } from "../helpers/validate.helpers.js";
+
 
 const validateCreate = [
     check('title')
@@ -52,4 +54,4 @@ const validateDelete = [
     }
 ];
 
-module.exports = { validateCreate, validateUpdate, validateDelete };
+export  { validateCreate, validateUpdate, validateDelete };

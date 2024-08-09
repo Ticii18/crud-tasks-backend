@@ -1,8 +1,8 @@
-const mysql = require('mysql2/promise');
+import { createConnection } from 'mysql2/promise';
 
 const db = async () => {
     try {
-        const conex = await mysql.createConnection({
+        const conex = await createConnection({
             host: 'localhost',
             user: 'root',
             database: 'tasks_db'
@@ -15,4 +15,4 @@ const db = async () => {
     }
 };
 
-module.exports = db;
+export {db};

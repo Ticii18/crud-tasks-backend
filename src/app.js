@@ -1,15 +1,15 @@
-const express = require("express")
-const routes = require("./routes/tasks.routes")
+import express, { json } from "express";
+import {router} from "./routes/tasks.routes.js";
 
 const app = express();
 
 //MIDDLEWARE
-app.use(express.json())
+app.use(json())
 
 
 //rutas de usuarios
 
-app.use(routes)
+app.use(router)
 
 
 app.listen(3000, ()=>{
