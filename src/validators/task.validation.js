@@ -1,20 +1,18 @@
-import { check, param } from "express-validator";
-
+import { body, param } from "express-validator";
 import { validateResult } from "../helpers/validate.helpers.js";
 
-
 const validateCreate = [
-    check('title')
+    body('title')
         .exists()
         .not()
         .isEmpty()
         .isLength({ min: 5, max: 255 }),
-    check('description')
+    body('description')
         .exists()
         .not()
         .isEmpty()
         .isLength({ min: 5, max: 255 }),
-    check('isComplete')
+    body('isComplete')
         .exists()
         .isBoolean(),
     (req, res, next) => {
@@ -23,19 +21,19 @@ const validateCreate = [
 ];
 
 const validateUpdate = [
-    check('title')
+    body('title')
         .optional()
         .not()
         .isEmpty()
         .isLength({ min: 5, max: 255 }),
-    check('description')
+    body('description')
         .optional()
         .not()
         .isEmpty()
         .isLength({ min: 5, max: 255 }),
-    check('isComplete')
+    body('isComplete')
         .optional()
-        .isBoolean(), 
+        .isBoolean(),
     (req, res, next) => {
         validateResult(req, res, next);
     }
@@ -54,4 +52,4 @@ const validateDelete = [
     }
 ];
 
-export  { validateCreate, validateUpdate, validateDelete };
+export { validateCreate, validateUpdate, validateDelete };

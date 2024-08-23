@@ -1,20 +1,13 @@
-import { Router } from "express"
-import { getTasks, getTasksById, postTasks, deleteTasksbyID, putTasks } from "../controllers/tasks.controllers.js"
-import { validateCreate, validateUpdate, validateDelete } from "../validators/task.validation.js"
+import { Router } from "express";
+import { getTasks, getTasksById, postTasks, deleteTasksbyID, putTasks } from "../controllers/tasks.controllers.js";
+import { validateCreate, validateUpdate, validateDelete } from "../validators/task.validation.js";
 
-const router = Router()
+const routerTasks = Router();
 
+routerTasks.get('/', getTasks);
+routerTasks.get('/:id', getTasksById);
+routerTasks.post('/', validateCreate, postTasks);
+routerTasks.put('/:id', validateUpdate, putTasks);
+routerTasks.delete('/:id', validateDelete, deleteTasksbyID);
 
-
-
-router.get('/tasks/',getTasks )
-
-router.get('/tasks/:id',getTasksById)
-
-router.post('/tasks/',validateCreate ,postTasks );
-
-router.put('/tasks/:id' ,validateUpdate,putTasks )
-
-router.delete('/tasks/:id',validateDelete,deleteTasksbyID )
-
-export {router}
+export { routerTasks };
